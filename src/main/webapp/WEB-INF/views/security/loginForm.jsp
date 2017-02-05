@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="/j_spring_security_check" method="post">
-	ID : <input type="text" name="j_username" id="j_username"><br />
+	ID : <input type="text" name="j_username" id="j_username"><br />    <!-- 폼으로  아디를 j_username,비번을 j_password로 보내주면 자동으로 인메모리 디비이든 일반데이터베이스이든 확인함  -->
 	PW : <input type="text" name="j_password" id="j_password"><br />
 	<input type="submit" value="전송">
 </form>
