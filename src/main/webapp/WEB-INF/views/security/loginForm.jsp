@@ -13,12 +13,12 @@
 	<input type="submit" value="전송">
 </form>
 
-<form action="<c:url value="j_spring_security_check" />" method="post">
+<%-- <form action="<c:url value="j_spring_security_check" />" method="post">
 	ID : <input type="text" name="j_username"> <br />
 	PW : <input type="text" name="j_password"> <br />
 	<input type="submit" value="LOGIN"> <br />
 </form>
-
+ --%>
 
 
 
