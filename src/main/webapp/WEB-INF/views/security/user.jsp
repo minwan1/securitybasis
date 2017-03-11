@@ -8,5 +8,8 @@
 </head>
 <body>
 login.jsp
+
+
+<P>Username is ${username}</P>
 </body>
 </html>

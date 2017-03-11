@@ -13,15 +13,6 @@
 	<input type="submit" value="전송">
 </form>
 
-<form action="<c:url value="j_spring_security_check" />" method="post">
-	ID : <input type="text" name="j_username"> <br />
-	PW : <input type="text" name="j_password"> <br />
-	<input type="submit" value="LOGIN"> <br />
-</form>
-
-
-
-
 네임 얻어오는 방법 pageontext.request.userprincipal.name
 <a href="pageContext.request.contextpath/j_spring_security_logout"> log out</a>
 //주소쪽을 변경해서 로그아웃을할수있다.
