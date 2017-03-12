@@ -7,19 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-<form action="/j_spring_security_check" method="post">
+<form action="/j_spring_security_check" method="post" id="form_login">
 	ID : <input type="text" name="j_username" id="j_username"><br />    <!-- 폼으로  아디를 j_username,비번을 j_password로 보내주면 자동으로 인메모리 디비이든 일반데이터베이스이든 확인함  -->
 	PW : <input type="text" name="j_password" id="j_password"><br />
-=======
-<form action="/j_spring_security_check" method="post" id="form_login">
-	ID : <input type="text" name="loginid" id="loginid"><br />
-	PW : <input type="text" name="loginpwd" id="loginpwd"><br />
 	<button id="btn_login">로그인</button>
->>>>>>> refs/remotes/origin/master
 	<input type="submit" value="전송">
 </form>
-<<<<<<< HEAD
 
 <%-- <form action="<c:url value="j_spring_security_check" />" method="post">
 	ID : <input type="text" name="j_username"> <br />
@@ -28,14 +21,9 @@
 </form>
  --%>
 
-
-=======
->>>>>>> refs/remotes/origin/master
-
 네임 얻어오는 방법 pageontext.request.userprincipal.name
 <a href="pageContext.request.contextpath/j_spring_security_logout"> log out</a>
 //주소쪽을 변경해서 로그아웃을할수있다.
-
 
 <script type="text/javascript">
 $("#btn_login").on("click",function(){
