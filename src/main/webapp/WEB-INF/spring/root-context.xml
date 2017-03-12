@@ -14,12 +14,13 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 			
 			
+			<context:property-placeholder location="classpath:jdbc.properties" />
 			<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> 
-		<property name="url" value="jdbc:mysql://mysqltest.cdughzdwf2dy.us-west-2.rds.amazonaws.com:3306/security"></property> 
-		<property name="username" value="root"></property> 
-		<property name="password" value="alsdhks12"></property> 
+		<property name="driverClassName" value="${jdbc.driver}"></property> 
+		<property name="url" value="${jdbc.url}"></property> 
+		<property name="username" value="${jdbc.username}"></property> 
+		<property name="password" value="${jdbc.password}"></property> 
 	</bean>
 	
 		
