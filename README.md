@@ -116,22 +116,22 @@ security-context.xml (security 네임스페이스을 추가해줘야한다.)
 ```xml
 <!-- Root Context: defines shared resources visible to all other web components -->
 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> 
-<property name="url" value="jdbc:mysql://디비주소"></property> 
-<property name="username" value="디비아이디"></property> 
-<property name="password" value="디비비번"></property> 
+<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://디비주소"></property>
+<property name="username" value="디비아이디"></property>
+<property name="password" value="디비비번"></property>
 </bean>
 ```
 
 
 ```xml
-<security:authentication-manager alias="authenticationManager"> 
+<security:authentication-manager alias="authenticationManager">
 	<security:authentication-provider>
-		<security:jdbc-user-service data-source-ref="dataSource" 
+		<security:jdbc-user-service data-source-ref="dataSource"
 		authorities-by-username-query="SELECT username, authority FROM authorities WHERE username = ?"
 					users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"/>
-	</security:authentication-provider> 
-</security:authentication-manager>	
+	</security:authentication-provider>
+</security:authentication-manager>
 ```
 
 ```sql
@@ -170,5 +170,3 @@ authorities Table
 |  bkchoi  |     USER     |
 
 위에처럼 생성하게되면 따로 dao연결과 같은 설정필요없이 알아서 아이디 비번을 디비에서 확인하게된다.(테이블 이름과 칼럼이름이 위와 동일해야함)
-
-

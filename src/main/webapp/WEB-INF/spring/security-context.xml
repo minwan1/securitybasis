@@ -5,11 +5,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
+	<bean id="customeUserDetailsService" class="com.wan.basis.CustomUserDetailsService"></bean>
+	<bean id="customeAuthenticationProvider" class="com.wan.basis.customprovider.CustomAuthenticationProvider"></bean>
+
+	
 	<security:authentication-manager alias="authenticationManager"> <!-- 인메모리 사용자 db방벙 --> 
-		<security:authentication-provider>
-			<security:jdbc-user-service data-source-ref="dataSource" 
+		<security:authentication-provider user-service-ref="customeUserDetailsService">
+<!-- 			<security:jdbc-user-service data-source-ref="dataSource" 
+			id="jdbcUserService"
 			authorities-by-username-query="SELECT username, authority FROM authorities WHERE username = ?"
-            users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"/>
+            users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"/> -->
 		</security:authentication-provider> 
 	</security:authentication-manager>	
 		
