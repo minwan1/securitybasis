@@ -12,14 +12,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+			
+			
+			<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> 
 		<property name="url" value="jdbc:mysql://mysqltest.cdughzdwf2dy.us-west-2.rds.amazonaws.com:3306/security"></property> 
 		<property name="username" value="root"></property> 
 		<property name="password" value="alsdhks12"></property> 
 	</bean>
+	
 		
 </beans>
