@@ -6,6 +6,9 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,9 +53,15 @@ public class HomeController {
 //		return "index";
 //	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		
+		
+		model.addAttribute("username",username);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -61,7 +70,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "security/login";
+		return "security/user";
 	}
 	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
@@ -78,7 +87,7 @@ public class HomeController {
 		return "security/welcome";
 	}
 	
-	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
