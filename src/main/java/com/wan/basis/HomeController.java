@@ -87,7 +87,7 @@ public class HomeController {
 		return "security/welcome";
 	}
 	
-	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
