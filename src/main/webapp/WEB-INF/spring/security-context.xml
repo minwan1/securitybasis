@@ -10,11 +10,12 @@
 
 	
 	<security:authentication-manager alias="authenticationManager"> <!-- 인메모리 사용자 db방벙 --> 
-		<security:authentication-provider user-service-ref="customeUserDetailsService">
-<!-- 			<security:jdbc-user-service data-source-ref="dataSource" 
+		<security:authentication-provider user-service-ref="customeUserDetailsService" />
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource" 
 			id="jdbcUserService"
 			authorities-by-username-query="SELECT username, authority FROM authorities WHERE username = ?"
-            users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"/> -->
+            users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"/> 
 		</security:authentication-provider> 
 	</security:authentication-manager>	
 		
