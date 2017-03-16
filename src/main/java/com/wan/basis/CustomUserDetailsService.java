@@ -7,30 +7,45 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.wan.basis.dto.UserInfo;
 import com.wan.basis.dto.UserPermission;
+import com.wan.basis.dto.human;
 
+
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
+	
+	@Inject
+	UserDao dao;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserInfo userInfo = findUserInfo(username);
-		if (userInfo == null)
-			throw new UsernameNotFoundException(username);
-
-		List<UserPermission> perms = loadPermission(userInfo.getId());
-		List<GrantedAuthority> auth = new ArrayList<>();
-		for (UserPermission perm : perms) {
-			auth.add(new SimpleGrantedAuthority(perm.getName()));
+	public human loadUserByUsername(String username) throws UsernameNotFoundException {
+		human userInfo = null;
+		try {
+			userInfo = dao.read(username);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return new User(username, userInfo.getPassword(), auth);
+
+//		List<UserPermission> perms = loadPermission(userInfo.getId());
+//		List<GrantedAuthority> auth = new ArrayList<>();
+//		for (UserPermission perm : perms) {
+//			auth.add(new SimpleGrantedAuthority(perm.getName()));
+//		}
+//		return new User(username, userInfo.getPassword(), auth);
+		
+		return userInfo;
 	}
 
 	private UserInfo findUserInfo(String username) {

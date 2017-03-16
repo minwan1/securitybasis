@@ -36,9 +36,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException("not matching username or password");
 		}
 
-		List<GrantedAuthority> authorities = getAuthorities(userInfo.getId());
+		List<GrantedAuthority> authorities = getAuthorities(userInfo.isEnabled());
 		return new UsernamePasswordAuthenticationToken(
-				new UserInfo(userInfo.getId(), userInfo.getName(), null),
+				new UserInfo(userInfo.getEnabled(), userInfo.getUsername(), null),
 				null,
 				authorities);
 	}
@@ -47,8 +47,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		return userMap.get(id);
 	}
 
-	private List<GrantedAuthority> getAuthorities(String id) {
-		List<UserPermission> perms = permMap.get(id);
+	private List<GrantedAuthority> getAuthorities(boolean b) {
+		List<UserPermission> perms = permMap.get(b);
 		if (perms == null)
 			return Collections.emptyList();
 
