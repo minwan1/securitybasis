@@ -13,6 +13,7 @@ public class human implements UserDetails{
 	String username;
 	String password;
 	boolean enabled;
+	String age;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -57,7 +58,7 @@ public class human implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return enabled;
+		return true;
 	}
 
 }
