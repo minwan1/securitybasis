@@ -43,6 +43,14 @@ public class human implements UserDetails{
 		return true;
 	}
 
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub

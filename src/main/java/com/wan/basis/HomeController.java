@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wan.basis.dto.human;
+
 /**
  * Handles requests for the application home page.
  */
@@ -36,7 +38,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "security/user";
 	}
 	
 //	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -113,6 +115,18 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "security/loginForm";
+	}
+	
+	@RequestMapping(value = "/age", method = RequestMethod.GET)
+	public String test(Locale locale, Model model) {
+		logger.info("test()");
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		human user = (human)authentication.getPrincipal();
+		System.out.println(user.getAge());
+
+		
+		return "security/user";
 	}
 	
 	
