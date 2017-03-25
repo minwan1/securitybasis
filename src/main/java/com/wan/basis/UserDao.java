@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
-import com.wan.basis.dto.UserInfo;
 import com.wan.basis.dto.human;
 
 
