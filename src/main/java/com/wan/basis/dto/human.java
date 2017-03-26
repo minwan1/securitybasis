@@ -43,6 +43,18 @@ public class human implements UserDetails{
 		return true;
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public String getAge() {
 		return age;
 	}

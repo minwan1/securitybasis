@@ -12,6 +12,7 @@ import com.wan.basis.dto.human;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 	
+	
 	@Inject
 	UserDao dao;
 	// 디비에서 유저정보를 불러오는메소 이것을 AuthenticationProvider에서 인증을통함

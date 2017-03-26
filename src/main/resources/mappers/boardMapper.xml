@@ -13,5 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="read" resultType="com.wan.basis.dto.human">
  select * from users where username = #{username};
  </select>
+ 
+ <select id="usercreate">
+ insert into users(username,password,enabled,age) values(#{username},#{password},#{enabled},#{age});
+ </select>
   
 </mapper>

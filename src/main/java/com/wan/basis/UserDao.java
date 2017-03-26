@@ -33,5 +33,17 @@ public class UserDao {
 		return user;
 	
 	}
+	
+	public boolean createUser(String userId,String userPassword){
+		human human = new human();
+		human.setAge("33");
+		human.setPassword(userPassword);
+		human.setEnabled(true);
+		human.setUsername(userId);
+		
+		session.insert(namespace+".usercreate",human);
+		
+		return true;
+	}
 
 }
