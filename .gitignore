@@ -51,4 +51,6 @@ local.properties
 .recommenders/
 /target/
 
-.properties
+
+# added
+jdbc.properties
