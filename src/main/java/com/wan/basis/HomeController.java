@@ -6,13 +6,16 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wan.basis.dto.human;
 
@@ -21,6 +24,15 @@ import com.wan.basis.dto.human;
  */
 @Controller
 public class HomeController {
+	@Autowired
+	CustomUserDetailsService customeUserDetailsService;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
+	
+	@Autowired
+	UserDao dao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -128,6 +140,19 @@ public class HomeController {
 		
 		return "security/user";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String createUser(Locale locale, Model model,String userId,String userPassword) {
+		logger.info("create()");
+		
+		logger.info(passwordEncoder.encode(userPassword));
+		dao.createUser(userId, passwordEncoder.encode(userPassword));
+
+		
+		return "security/user";
+	}
+	
 	
 	
 }
