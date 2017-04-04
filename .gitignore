@@ -54,3 +54,4 @@ local.properties
 
 # added
 jdbc.properties
+social.properties
