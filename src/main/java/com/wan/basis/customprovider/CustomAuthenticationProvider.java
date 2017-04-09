@@ -12,8 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.wan.basis.CustomUserDetailsService;
-import com.wan.basis.dto.human;
+import com.wan.basis.dto.User;
+import com.wan.user.service.CustomUserDetailsService;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider { //authenticationManager
@@ -25,7 +25,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider { //
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		UsernamePasswordAuthenticationToken authToken = (UsernamePasswordAuthenticationToken) authentication; //유저정보와 이이디비번으으로만든다.(로그인한 유저아이디비번정보를담는다)
 
-		human userInfo = customeUserDetailsService.loadUserByUsername(authToken.getName()); //UserDetailsService에서 유저정보를 불러온다.
+		User userInfo = customeUserDetailsService.loadUserByUsername(authToken.getName()); //UserDetailsService에서 유저정보를 불러온다.
 		if (userInfo == null) {
 			throw new UsernameNotFoundException(authToken.getName());
 		}

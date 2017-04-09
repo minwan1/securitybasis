@@ -5,26 +5,105 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="//code.jquery.com/jquery.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS --> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> <!-- 합쳐지고 최소화된 옵션 테마 --> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> <!-- 합쳐지고 최소화된 최신 자바스크립트 --> 
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">
+
+body {
+	background: #eee !important;	
+}
+
+.wrapper {	
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}
+
+.textCenter{
+	text-align:center
+}
+
+
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/j_spring_security_check" method="post" id="form_login">
-	ID : <input type="text" name="j_username" id="j_username"><br />    <!-- 폼으로  아디를 j_username,비번을 j_password로 보내주면 자동으로 인메모리 디비이든 일반데이터베이스이든 확인함  -->
-	PW : <input type="text" name="j_password" id="j_password"><br />
-	<button id="btn_login">로그인</button>
-	<input type="submit" value="전송">
-</form>
 
-네임 얻어오는 방법 pageontext.request.userprincipal.name
-<a href="pageContext.request.contextpath/j_spring_security_logout"> log out</a>
-//주소쪽을 변경해서 로그아웃을할수있다.
+  <div class="wrapper">
+    <form action="/j_spring_security_check" method="post" id="form_login"  class="form-signin">       
+      <h2 class="form-signin-heading textCenter">Sign In</h2>
+      <input type="text" class="form-control" name="j_username" placeholder="Email Address" id="j_username" required="" autofocus="" />
+      <input type="password" class="form-control" name="j_password" placeholder="Password" id="j_password" required=""/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+      <button type="button" class="btn btn-lg btn-primary btn-block" id="facebookLogin">Facebook</button> 
+    </form>
+  </div>
+  
+  <div class="wrapper">
+    <div class="form-signin">       
+      <h2 class="form-signin-heading textCenter">Sign Up</h2>
+      <input type="text" class="form-control" id="userId"/>
+      <input type="password" class="form-control" id="userPassword"/>    
+      <br>  
+      <button type="button" class="btn btn-lg btn-primary btn-block" id="create">Sign Up</button>   
+    </div>
+  </div>
+  
+  
+  <form action="/signin/facebook" method="POST" id="facebook_connect">
+		<input type="hidden" name="scope" value="public_profile,user_friends,email" />
+	</form>
 
-<br><br><br><br>
-*회원가입<br>
 
-<input type="text" id="userId"><br>
-<input type="text" id="userPassword"><br>
-<button type="button" id="create">회원가입</button>
+
 
 <script type="text/javascript">
 
@@ -46,10 +125,14 @@ $("#create").on("click",function(){
          success : function(data) {
                // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
                // TODO
-               
-               
+               alert("회원가입 성공");
          }
    }); 
+ 	 
+ 	 
+ 	 function facebookLogin(){
+ 		$("#facebook_connect").submit();
+ 	 }
 });
 
 </script>

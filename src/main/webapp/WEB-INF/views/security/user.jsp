@@ -11,7 +11,6 @@ login.jsp
 
 
 <P>Username is ${username}</P>
-
 <a href="/j_spring_security_logout"> Logout</a>
 </body>
 </html>

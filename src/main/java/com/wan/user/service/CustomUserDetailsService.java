@@ -1,4 +1,4 @@
-package com.wan.basis;
+package com.wan.user.service;
 
 import javax.inject.Inject;
 
@@ -6,7 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.wan.basis.dto.human;
+import com.wan.basis.dto.User;
+import com.wan.basis.user.dao.UserDao;
 
 
 @Service
@@ -17,8 +18,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	UserDao dao;
 	// 디비에서 유저정보를 불러오는메소 이것을 AuthenticationProvider에서 인증을통함
 	@Override
-	public human loadUserByUsername(String username) throws UsernameNotFoundException {
-		human userInfo = null;
+	public User loadUserByUsername(String username) throws UsernameNotFoundException {
+		User userInfo = null;
 		try {
 			userInfo = dao.read(username); //디비 정보를 불러와 유저정보 조
 		} catch (Exception e) {
