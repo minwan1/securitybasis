@@ -160,13 +160,7 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		
-		<!-- spring facebook-->
-				<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-facebook</artifactId>
-			<version>1.1.1.RELEASE</version>
-		</dependency>
+
 
 
 	<!-- Use Apache HttpClient as HTTP Client -->
@@ -179,21 +173,6 @@
 	<!-- Spring Social -->
 	<dependency>
 		<groupId>org.springframework.social</groupId>
-		<artifactId>spring-social-config</artifactId>
-		<version>1.1.1.RELEASE</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework.social</groupId>
-		<artifactId>spring-social-core</artifactId>
-		<version>1.1.1.RELEASE</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework.social</groupId>
-		<artifactId>spring-social-security</artifactId>
-		<version>1.1.1.RELEASE</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework.social</groupId>
 		<artifactId>spring-social-web</artifactId>
 		<version>1.1.1.RELEASE</version>
 	</dependency>
@@ -204,13 +183,21 @@
 		<artifactId>spring-social-facebook</artifactId>
 		<version>1.1.1.RELEASE</version>
 	</dependency>
-
-	<!-- Spring Social Twitter -->
-	<dependency>
-		<groupId>org.springframework.social</groupId>
-		<artifactId>spring-social-twitter</artifactId>
-		<version>1.1.1.RELEASE</version>
-	</dependency>
+	
+				<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
+			</dependency>
+			
+						
+			<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>3.1.3.RELEASE</version>
+</dependency>
+			
+	
 	
 		<!-- Test -->
 		<dependency>

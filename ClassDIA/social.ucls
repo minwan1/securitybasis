@@ -3,15 +3,154 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <interface id="1" language="java" name="org.springframework.social.config.annotation.SocialConfigurer" 
     project="security" 
-    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-config/1.1.1.RELEASE/spring-social-config-1.1.1.RELEASE.jar" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-config/1.1.4.RELEASE/spring-social-config-1.1.4.RELEASE.jar" 
     binary="true" corner="BOTTOM_RIGHT">    
-    <position height="125" width="427" x="115" y="95"/>    
+    <position height="137" width="568" x="223" y="9"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
+  <class id="2" language="java" name="org.springframework.social.config.annotation.SocialConfigurerAdapter" 
+    project="security" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-config/1.1.4.RELEASE/spring-social-config-1.1.4.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="72" width="288" x="143" y="151"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="org.springframework.social.config.annotation.ConnectionFactoryConfigurer" 
+    project="security" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-config/1.1.4.RELEASE/spring-social-config-1.1.4.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="497" y="492"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" 
+    name="org.springframework.social.config.annotation.SecurityEnabledConnectionFactoryConfigurer" project="security" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-config/1.1.4.RELEASE/spring-social-config-1.1.4.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="74" width="398" x="96" y="555"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.springframework.social.config.annotation.SocialConfiguration" 
+    project="security" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-config/1.1.4.RELEASE/spring-social-config-1.1.4.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="55" width="367" x="497" y="160"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.springframework.social.config.annotation.DefaultConnectionFactoryConfigurer" 
+    project="security" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-config/1.1.4.RELEASE/spring-social-config-1.1.4.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="77" width="278" x="543" y="560"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" language="java" name="org.springframework.social.connect.UsersConnectionRepository" project="test" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-core/1.1.1.RELEASE/spring-social-core-1.1.1.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="55" width="218" x="637" y="265"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="8" language="java" name="org.springframework.social.connect.ConnectionFactoryLocator" project="test" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-core/1.1.1.RELEASE/spring-social-core-1.1.1.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="56" width="248" x="375" y="262"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" name="org.springframework.social.connect.web.ProviderSignInController" project="test" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-web/1.1.1.RELEASE/spring-social-web-1.1.1.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="55" width="400" x="287" y="353"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" language="java" name="org.springframework.social.connect.web.SignInAdapter" project="test" 
+    file="/Users/wan/.m2/repository/org/springframework/social/spring-social-web/1.1.1.RELEASE/spring-social-web-1.1.1.RELEASE.jar" 
+    binary="true" corner="BOTTOM_RIGHT">    
+    <position height="74" width="215" x="153" y="256"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="11">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="12" name="usersConnectionRepository"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="14">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="15">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="16" name="signInAdapter"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="18">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="19">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="20">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="21" name="socialConfigurers"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="24" name="connectionFactoryLocator"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
