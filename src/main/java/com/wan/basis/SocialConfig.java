@@ -1,5 +1,6 @@
 package com.wan.basis;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
@@ -36,6 +38,7 @@ import com.wan.basis.user.dao.UserRepository;
 @ComponentScan
 @EnableSocial
 @Configuration
+@PropertySource("classpath:/social.properties")
 public class SocialConfig implements SocialConfigurer {
 	@Inject
 	private DataSource dataSource;
@@ -48,6 +51,9 @@ public class SocialConfig implements SocialConfigurer {
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	
+	@Resource
+	private Environment environment;
 
 	@Override
 	public UserIdSource getUserIdSource() {
@@ -56,11 +62,11 @@ public class SocialConfig implements SocialConfigurer {
 
 	@Override
 	public void addConnectionFactories(ConnectionFactoryConfigurer cfConfig, Environment env) {
-		String appKey = "";
-		String appSecret = "";
+		//String appKey = environment.getProperty("facebook.appKey");
+		//String appSecret = "2d6fc6392c08aec7d407d973b27506ca";
 
-		cfConfig.addConnectionFactory(new FacebookConnectionFactory(appKey, appSecret));
-		cfConfig.addConnectionFactory(new GoogleConnectionFactory("",""));
+		cfConfig.addConnectionFactory(new FacebookConnectionFactory(environment.getProperty("facebook.appKey"), environment.getProperty("facebook.appSecret")));
+		cfConfig.addConnectionFactory(new GoogleConnectionFactory(environment.getProperty("google.appKey"),environment.getProperty("google.appSecret")));
 	}
 
 	@Override

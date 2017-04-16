@@ -6,9 +6,13 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +28,7 @@ import com.wan.basis.dto.User;
 //import com.wan.user.service.CustomUserDetailsService;
 
 @Controller
+@PropertySource("classpath:/jdbc.properties")
 public class SecurityController {
 	
 //	@Autowired
@@ -36,13 +41,15 @@ public class SecurityController {
 //	UserDao dao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
+	@Resource
+	private Environment environment;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET) //일단 유저로넘어간다.
 	public String home(Locale locale, Model model) {
-		return "security/loginFocarm";
+		return "security/loginForm";
 	}
 	
 //	@RequestMapping(value = "/admin", method = RequestMethod.GET) //유저만 들어갈수있
