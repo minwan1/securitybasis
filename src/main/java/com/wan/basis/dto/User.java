@@ -4,16 +4,57 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@Entity
 public class User implements UserDetails{
 	
+	@Id
+	@Column
 	String username;
+	@Column
 	String password;
+	@Column
 	boolean enabled;
-	String age;
+
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Column
+	String email;
+	@Column(name="first_name")
+	String firstName;
+	@Column(name="last_name")
+	String lastName;
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -53,14 +94,6 @@ public class User implements UserDetails{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
 	}
 
 	@Override

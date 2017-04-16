@@ -1,27 +1,26 @@
 package com.wan.user.service;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.wan.basis.dto.User;
-import com.wan.basis.user.dao.UserDao;
-
+import com.wan.basis.user.dao.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 	
 	
-	@Inject
-	UserDao dao;
+	@Autowired
+	private UserRepository userRepository;
+	
 	// 디비에서 유저정보를 불러오는메소 이것을 AuthenticationProvider에서 인증을통함
 	@Override
 	public User loadUserByUsername(String username) throws UsernameNotFoundException {
 		User userInfo = null;
 		try {
-			userInfo = dao.read(username); //디비 정보를 불러와 유저정보 조
+			userInfo = userRepository.findByusername(username); //디비 정보를 불러와 유저정보 조
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

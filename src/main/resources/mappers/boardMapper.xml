@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
  <insert id="create">
- insert into users (username, password, enabled,age) 
+ insert into user (username, password, enabled,age) 
  values(#{username},#{password}, #{enabled},#{age})
  </insert>
 
@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  
  <select id="usercreate">
- insert into users(username,password,enabled,age) values(#{username},#{password},#{enabled},#{age});
+ insert into user(username,password,enabled,age) values(#{username},#{password},#{enabled},#{age});
  </select>
   
 </mapper>

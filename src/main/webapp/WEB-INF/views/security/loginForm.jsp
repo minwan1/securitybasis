@@ -95,6 +95,7 @@ input[type="password"] {
 			</label>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 				<button type="button" class="btn btn-lg btn-primary btn-block" id="facebookLogin">Facebook</button>
+				<button type="button" class="btn btn-lg btn-primary btn-block" id="googleLogin">Google</button>
 		</form>
 	</div>
 	
@@ -112,8 +113,13 @@ input[type="password"] {
 	</div>
 
 	<form action="/signin/facebook" method="POST" id="facebook_connect">
-		<input type="hidden" name="scope"
-			value="public_profile,user_friends,email" />
+		<input type="hidden" name="scope" value="public_profile,user_friends,email" />
+	</form>
+	
+	<form action="/signin/google" method="POST" id="google_connect">
+						    <input type="hidden" name="scope" value="email https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/tasks https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/latitude.all.best" />
+				    <input type="hidden" name="request_visible_actions" value="http://schemas.google.com/AddActivity http://schemas.google.com/BuyActivity http://schemas.google.com/CheckInActivity http://schemas.google.com/CommentActivity http://schemas.google.com/CreateActivity http://schemas.google.com/DiscoverActivity http://schemas.google.com/ListenActivity http://schemas.google.com/ReserveActivity http://schemas.google.com/ReviewActivity http://schemas.google.com/WantActivity"/>
+				    <input type="hidden" name="access_type" value="offline"/>
 	</form>
 
 
@@ -149,6 +155,11 @@ $("#create").on("click",function(){
  	$("#facebookLogin").on("click",function(){
  		console.log("facebookLogin");
  		facebookLogin();
+ 	});
+ 	
+ 	$("#googleLogin").on("click",function(){
+ 		console.log("google");
+ 		$("#google_connect").submit();
  	});
  	 
  	$("#test1").on("click",function(){
