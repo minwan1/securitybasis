@@ -5,8 +5,12 @@ import java.text.DateFormat;
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wan.basis.dto.User;
 //import com.wan.basis.user.dao.UserDao;
 //import com.wan.user.service.CustomUserDetailsService;
+import com.wan.basis.user.dao.UserRepository;
 
 @Controller
 @PropertySource("classpath:/jdbc.properties")
@@ -33,6 +38,10 @@ public class SecurityController {
 	
 //	@Autowired
 //	CustomUserDetailsService customeUserDetailsService;
+	
+	@Autowired
+	UserRepository userRepository;
+	
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -44,12 +53,30 @@ public class SecurityController {
 	@Resource
 	private Environment environment;
 	
+	private String createUserUuid() { //make uuid
+		return UUID.randomUUID().toString();
+	}
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET) //일단 유저로넘어간다.
-	public String home(Locale locale, Model model) {
-		return "security/loginForm";
+	public String home(Locale locale, Model model,HttpServletRequest request, HttpServletResponse response) {
+		Authentication authntication = SecurityContextHolder.getContext().getAuthentication();
+
+		
+		if(!authntication.getPrincipal().equals("anonymousUser")){
+			String username = authntication.getName();
+			model.addAttribute("username",username);
+			return "security/user";
+		}
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "home";
 	}
 	
 //	@RequestMapping(value = "/admin", method = RequestMethod.GET) //유저만 들어갈수있
@@ -133,16 +160,22 @@ public class SecurityController {
 //		return "security/user";
 //	}
 	
-//	@ResponseBody
-//	@RequestMapping(value = "/create", method = RequestMethod.POST) //회원가입부
-//	public String createUser(Locale locale, Model model,String userId,String userPassword) {
-//		logger.info("create()");
-//		
-//		logger.info(passwordEncoder.encode(userPassword));
-////		dao.createUser(userId, passwordEncoder.encode(userPassword));
-//		
-//		return "security/user";
-//	}
+	@ResponseBody
+	@RequestMapping(value = "/create", method = RequestMethod.POST) //회원가입부
+	public String createUser(Locale locale, Model model,String userId,String userPassword) {
+		logger.info("create()");
+		User user = new User();
+		user.setEmail(userId);
+		user.setEnabled(true);
+		user.setFirstName("test");
+		user.setLastName("test");
+		user.setPassword(passwordEncoder.encode(userPassword));
+		user.setUsername(createUserUuid());
+//		dao.createUser(userId, passwordEncoder.encode(userPassword));
+		userRepository.save(user);
+		
+		return "security/user";
+	}
 	
 //	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 //	public String loginForm(Locale locale, Model model, @PathVariable String id) {

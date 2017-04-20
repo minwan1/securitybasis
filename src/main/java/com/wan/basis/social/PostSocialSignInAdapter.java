@@ -43,22 +43,6 @@ public class PostSocialSignInAdapter implements SignInAdapter {
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
 		
-//		UserProfile profile = connection.fetchUserProfile();
-//		User user=null;
-//		try {
-//			user = dao.read(profile.getEmail());
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		HttpServletRequest req = ((ServletWebRequest) request).getRequest();
-//		req.getSession().setAttribute("loggedUser", user);
-//		return "/"; // will return to postSignInUrl 로그인한이후에 이동될 사이트인듯 
-		
-		
-//	}
-		
-		
 		User user = userRepository.findByusername(localUserId);
 		System.out.println(user.getAuthorities());
 		Authentication auth = new UsernamePasswordAuthenticationToken(user,null,user.getAuthorities());

@@ -10,5 +10,6 @@ import com.wan.basis.dto.User;
 public interface UserRepository extends JpaRepository<User, String> {
 
 	public User findByusername(String username);
+	public User findByemail(String email);
 
 }
