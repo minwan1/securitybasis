@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-	<bean id="customeUserDetailsService" class="com.wan.basis.CustomUserDetailsService"></bean>
+
+	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+		<constructor-arg value="myAppKey" />
+		<constructor-arg ref="jdbcTokenRepository" />
+		<constructor-arg ref="customeUserDetailsService" />
+	</bean>
+
+	<!-- Uses a database table to maintain a set of persistent login data -->
+	<bean id="jdbcTokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<property name="createTableOnStartup" value="false" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+ 	<bean id="customeUserDetailsService" class="com.wan.user.service.CustomUserDetailsService"></bean>
  	<bean id="customeAuthenticationProvider" class="com.wan.basis.customprovider.CustomAuthenticationProvider"></bean> 
  	
  	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
  	
 	<security:authentication-manager alias="authenticationManager"> <!-- 인메모리 사용자 db방벙 --> 
-		<security:authentication-provider ref="customeAuthenticationProvider">
-		</security:authentication-provider>
+ 		<security:authentication-provider ref="customeAuthenticationProvider" />
 		<security:authentication-provider user-service-ref="customeUserDetailsService">
 			 <security:password-encoder ref="passwordEncoder"></security:password-encoder> 
 		</security:authentication-provider>
@@ -25,18 +38,27 @@
             users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"/> 
 		</security:authentication-provider>  -->
 	</security:authentication-manager>	
+	
 		
-	<security:http auto-config="true" use-expressions="true"> <!-- 앞에 security는 네임스페이스임    expressio은 ip와같이 접근 권한 제한을 좀더풍부하게 할수 있음-->
-		<security:intercept-url pattern="/manager/**" access="hasAuthority('USER_MANAGER')" />
-		<!--<security:intercept-url pattern="/manager/**" access="hasAuthority(ROLE_USER)" /> hasRole/hasAuthority 같은뜻 저권한 가지만 사람만 접근가 -->
-		<security:intercept-url pattern="/member/**" access="hasAuthority('USER')" /> <!-- 인증된 사람만 접근 가능  -->
-		<security:intercept-url pattern="/user/**" access="hasAuthority('USER')" /> <!-- 인증된 사람만 접근 가능  -->
+	<security:http auto-config="true" use-expressions="true"> <!-- 앞에 security는 네임스페이스임    expressio은 ip와같이 접근 권한 제한을 좀더풍부하게 할수 있음 -->
+
+<!-- 		<security:intercept-url pattern="/admin/**" access="hasAuthority('USER_MANAGER')" />
+		<security:intercept-url pattern="/manager/**" access="hasAuthority(ROLE_USER)" /> hasRole/hasAuthority 같은뜻 저권한 가지만 사람만 접근가
+		<security:intercept-url pattern="/member/**" access="hasAuthority('USER')" /> 인증된 사람만 접근 가능 
+		<security:intercept-url pattern="/user/**" access="hasAuthority('USER')" /> 인증된 사람만 접근 가능  -->
+		
 		<security:intercept-url pattern="/**" access="permitAll" />
 		<security:form-login 
 		login-page="/login" 
 		default-target-url="/user"
 		authentication-failure-url="/login?fail=true"/>
 		<security:logout logout-success-url="/login" />
-	</security:http>
+		<security:remember-me data-source-ref="dataSource" remember-me-parameter="remember-me" token-validity-seconds="86400" user-service-ref="customeUserDetailsService"/>
+	</security:http> 
+	
+
+
+	
+		<context:component-scan base-package="com.wan.basis" />
 	
 </beans>

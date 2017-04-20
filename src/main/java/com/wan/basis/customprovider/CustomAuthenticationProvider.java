@@ -10,22 +10,26 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.wan.basis.CustomUserDetailsService;
-import com.wan.basis.dto.human;
+import com.wan.basis.dto.User;
+import com.wan.user.service.CustomUserDetailsService;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider { //authenticationManager
 	
 	@Autowired
 	private CustomUserDetailsService customeUserDetailsService;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		UsernamePasswordAuthenticationToken authToken = (UsernamePasswordAuthenticationToken) authentication; //유저정보와 이이디비번으으로만든다.(로그인한 유저아이디비번정보를담는다)
 
-		human userInfo = customeUserDetailsService.loadUserByUsername(authToken.getName()); //UserDetailsService에서 유저정보를 불러온다.
+		User userInfo = customeUserDetailsService.loadUserByUsername(authToken.getName()); //UserDetailsService에서 유저정보를 불러온다.
 		if (userInfo == null) {
 			throw new UsernameNotFoundException(authToken.getName());
 		}
@@ -47,7 +51,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider { //
 	}
 
 	private boolean matchPassword(String password, Object credentials) {
-		return password.equals(credentials);
+		return passwordEncoder.matches(credentials.toString(), password);
 	}
 	@Override
 	public boolean supports(Class<?> authentication) {

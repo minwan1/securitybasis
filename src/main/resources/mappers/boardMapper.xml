@@ -6,16 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
  <insert id="create">
- insert into users (title, content, writer) 
- values(#{title},#{content}, #{writer})
+ insert into user (username, password, enabled,age) 
+ values(#{username},#{password}, #{enabled},#{age})
  </insert>
 
- <select id="read" resultType="com.wan.basis.dto.human">
+ <select id="read" resultType="com.wan.basis.dto.User">
  select * from users where username = #{username};
  </select>
  
  <select id="usercreate">
- insert into users(username,password,enabled,age) values(#{username},#{password},#{enabled},#{age});
+ insert into user(username,password,enabled,age) values(#{username},#{password},#{enabled},#{age});
  </select>
   
 </mapper>
