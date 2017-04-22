@@ -1,6 +1,6 @@
 
 ## 설명
-로그인 처리를 구현하는데는 두개의 인터페이스가 존재한다 UserDetailsService와 AuthencationProvider가 존재한다. 두개의 인터페이스를 구현해보겠습니다.
+로그인 처리를 구현하는데는 두개의 인터페이스가 존재한다 UserDetailsService와 AuthencationProvider가 존재한다. 두개의 인터페이스를 구현하면 security로그인 부분에서 데이터베이스에서 유저정보를 불러어오는부분과, 비밀번호 대조를 직접구현할 수 있다.
 
 UserDetailsService : 유저정보를 디비에서 불러오는 역할
 AuthencationProvider가 : 로그인 인증처리를 구현(비밀번호 대조)
