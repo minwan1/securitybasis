@@ -1,4 +1,3 @@
-# Daily Coding 2017-03-12일  spring security db 연동
 
 ## 설명
 로그인 처리를 구현하는데는 두개의 인터페이스가 존재한다 UserDetailsService와 AuthencationProvider가 존재한다. 두개의 인터페이스를 구현해보겠습니다.
@@ -167,30 +166,30 @@ public class CustomAuthenticationProvider implements AuthenticationProvider { //
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     UsernamePasswordAuthenticationToken authToken = (UsernamePasswordAuthenticationToken) authentication; //유저가 입력한 정보를 이이디비번으으로만든다.(로그인한 유저아이디비번정보를담는다)
-    
+
     user userInfo = customeUserDetailsService.loadUserByUsername(authToken.getName()); //UserDetailsService에서 유저정보를 불러온다.
     if (userInfo == null) {
       throw new UsernameNotFoundException(authToken.getName());
     }
-    
-    if (!matchPassword(userInfo.getPassword(), authToken.getCredentials())) { 
+
+    if (!matchPassword(userInfo.getPassword(), authToken.getCredentials())) {
       throw new BadCredentialsException("not matching username or password");
     }
-    
-    List<GrantedAuthority> authorities = (List<GrantedAuthority>) userInfo.getAuthorities(); 
-    
+
+    List<GrantedAuthority> authorities = (List<GrantedAuthority>) userInfo.getAuthorities();
+
     return new UsernamePasswordAuthenticationToken(userInfo,null,authorities);
   }
-  
+
   private boolean matchPassword(String password, Object credentials) {
     return password.equals(credentials);
   }
-  
+
   @Override
   public boolean supports(Class<?> authentication) {
     return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
   }
-  
+
 }
 ```
 그럼 CustomAuthenticationProviderclass에서 유저가입력한 정보와 디비에 유저정보를 통해 인증 처리를 하게된다.
@@ -218,12 +217,15 @@ CREATE TABLE `authorities` (
 |-------------|:-----------------------:|:------------------------------------------------------------------------:|
 | users       | 사용자 이름과 암호 정보 | username:사용자이름(로그인ID) <br>password:인증암호<br> enabled:계정사용가능여부 <br> age:사용자정보 나이 |
 | authorities | 사용자-권한 매핑 정보   | username:사용자 이름(로그인ID)<br> authority:권한        
+
 age는 나중에 유저정보를 확인하기위해 넣어습니다.(추가적으로 유저정보를 더넣고싶으면 더넣어도 무방함)
+
 예) user Table
 | username | password | enabled | age |
 |----------|:--------:|:-------:|:-------:|
 |   admin  |   1234   |    1    | 33|
 |  bkchoi  |   1234   |    1    |23|
+
 
 authorities Table
 | username |   authority   |
@@ -231,6 +233,7 @@ authorities Table
 |   admin  |     USER     |
 |   admin  | USER_MANAGER |
 |  bkchoi  |     USER     |
+
 
 위에처럼 생성하게되면 따로 dao연결과 같은 설정필요없이 알아서 아이디 비번을 디비에서 확인하게된다.(테이블 이름과 칼럼이름이 위와 동일해야함)
 
