@@ -15,10 +15,6 @@
 	<input type="submit" value="전송">
 </form>
 
-네임 얻어오는 방법 pageontext.request.userprincipal.name
-<a href="pageContext.request.contextpath/j_spring_security_logout"> log out</a>
-//주소쪽을 변경해서 로그아웃을할수있다.
-
 <br><br><br><br>
 *회원가입<br>
 

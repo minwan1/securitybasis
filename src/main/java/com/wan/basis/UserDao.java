@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
-import com.wan.basis.dto.human;
+import com.wan.basis.dto.user;
 
 
 @Repository
@@ -22,10 +22,10 @@ public class UserDao {
 	
 	}
 	
-	public human read(String username) throws Exception{
-		human user = null;
+	public user read(String username) throws Exception{
+		user user = null;
 		try {
-			user = (human) session.selectOne(namespace+".read" , username);
+			user = (user) session.selectOne(namespace+".read" , username);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
@@ -35,7 +35,7 @@ public class UserDao {
 	}
 	
 	public boolean createUser(String userId,String userPassword){
-		human human = new human();
+		user human = new user();
 		human.setAge("33");
 		human.setPassword(userPassword);
 		human.setEnabled(true);

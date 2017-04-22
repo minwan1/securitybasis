@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.wan.basis.dto.human;
+import com.wan.basis.dto.user;
 
 /**
  * Handles requests for the application home page.
@@ -47,26 +47,11 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
-		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "security/user";
+		return "redirect:/user";
 	}
-	
-//	@RequestMapping(value = "/index", method = RequestMethod.GET)
-//	public String index(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
-//		
-//		return "index";
-//	}
-	
+
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -79,27 +64,12 @@ public class HomeController {
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
 		String formattedDate = dateFormat.format(date);
-		
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "security/user";
 	}
 	
-	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
-	public String welcome(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "security/welcome";
-	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm(Locale locale, Model model) {
@@ -107,38 +77,10 @@ public class HomeController {
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
 		String formattedDate = dateFormat.format(date);
-		
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "security/loginForm";
-	}
-	
-	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-	public String loginForm(Locale locale, Model model, @PathVariable String id) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "security/loginForm";
-	}
-	
-	@RequestMapping(value = "/age", method = RequestMethod.GET)
-	public String test(Locale locale, Model model) {
-		logger.info("test()");
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		human user = (human)authentication.getPrincipal();
-		System.out.println(user.getAge());
-
-		
-		return "security/user";
 	}
 	
 	@ResponseBody
@@ -148,7 +90,6 @@ public class HomeController {
 		
 		logger.info(passwordEncoder.encode(userPassword));
 		dao.createUser(userId, passwordEncoder.encode(userPassword));
-
 		
 		return "security/user";
 	}

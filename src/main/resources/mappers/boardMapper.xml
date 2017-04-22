@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  values(#{title},#{content}, #{writer})
  </insert>
 
- <select id="read" resultType="com.wan.basis.dto.human">
+ <select id="read" resultType="com.wan.basis.dto.user">
  select * from users where username = #{username};
  </select>
  
