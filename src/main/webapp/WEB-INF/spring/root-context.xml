@@ -16,16 +16,10 @@
 	<context:component-scan base-package="com.wan.basis" />
 	<context:annotation-config />
 	
-<!-- 	<jdbc:embedded-database id="dataSource" type="HSQL">
-	</jdbc:embedded-database> spring data jpa 설정  -->
-	
-	
 	<!-- jpa repository가 위치한 패키지 경로 등록 -->
 	<jpa:repositories base-package="com.wan.basis"
 		entity-manager-factory-ref="entityManagerFactory" />
-		
-		
-		
+
 	<!-- 하이버네이트의 SessionFactory 에 상응하는 jpa의 EntityManagerFactory 등록 -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -47,15 +41,6 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>
-
-
-	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
-		<property name="dataSource" ref="dataSource" /> <property name="configLocation" 
-		value="classpath:/mybatis-config.xml"></property> <property name="mapperLocations" 
-		value="classpath:mappers/**/*Mapper.xml"></property> </bean> <bean id="sqlSession" 
-		class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache"> 
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg> 
-		</bean> -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
 
