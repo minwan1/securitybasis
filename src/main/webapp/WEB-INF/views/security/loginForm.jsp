@@ -143,6 +143,7 @@ $("#create").on("click",function(){
          data:{userId:$("#userId").val(),userPassword:$("#userPassword").val()},
          dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
          success : function(data) {
+        	 debugger;
                // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
                // TODO
                alert("회원가입 성공");

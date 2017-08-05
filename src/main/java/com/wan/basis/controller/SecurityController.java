@@ -63,6 +63,7 @@ public class SecurityController {
 	@RequestMapping(value = "/", method = RequestMethod.GET) //일단 유저로넘어간다.
 	public String home(Locale locale, Model model,HttpServletRequest request, HttpServletResponse response) {
 		Authentication authntication = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println("zxcv");
 
 		
 		if(!authntication.getPrincipal().equals("anonymousUser")){
@@ -76,7 +77,7 @@ public class SecurityController {
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "index";
 	}
 	
 //	@RequestMapping(value = "/admin", method = RequestMethod.GET) //유저만 들어갈수있
@@ -160,8 +161,9 @@ public class SecurityController {
 //		return "security/user";
 //	}
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "/create", method = RequestMethod.POST) //회원가입부
+	@ResponseBody
 	public String createUser(Locale locale, Model model,String userId,String userPassword) {
 		logger.info("create()");
 		User user = new User();
@@ -174,7 +176,7 @@ public class SecurityController {
 //		dao.createUser(userId, passwordEncoder.encode(userPassword));
 		userRepository.save(user);
 		
-		return "security/user";
+		return "test";
 	}
 	
 //	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
